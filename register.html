@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>회원가입</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>문예부</h1>
+    <nav>
+      <a href="index.html">홈</a>
+      <a href="posts.html">작품</a>
+      <a href="notices.html">공지</a>
+      <a href="login.html">로그인</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <div class="badge">새 계정 만들기</div>
+      <h2>회원가입</h2>
+      <p>문예부 웹사이트 계정을 만드세요.</p>
+
+      <input id="register-id" type="text" placeholder="아이디" />
+      <br /><br />
+      <input id="register-pw" type="password" placeholder="비밀번호" />
+      <br /><br />
+      <input id="register-pw2" type="password" placeholder="비밀번호 확인" />
+      <br /><br />
+
+      <button onclick="register()">회원가입</button>
+
+      <p><a href="login.html">이미 계정이 있나요? 로그인</a></p>
+    </section>
+  </main>
+
+  <footer class="simple-footer">
+  Copyright © 2026 Philip™ Literature
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+<script src="script.js"></script>
+<script>
+  checkLoginStatus();
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>작품 작성</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>문예부</h1>
+    <nav>
+      <a href="index.html">홈</a>
+      <a href="posts.html">작품</a>
+      <a href="notices.html">공지</a>
+      <a href="login.html">로그인</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <div class="badge">작품 등록</div>
+      <h2>작품 작성</h2>
+      <p>새 작품을 작성해 작품 목록에 추가하세요.</p>
+
+      <input id="post-title" type="text" placeholder="작품 제목" />
+      <br /><br />
+
+      <input id="post-category" type="text" placeholder="장르 (예: 시, 소설, 수필)" />
+      <br /><br />
+
+      <textarea id="post-content" placeholder="작품 내용을 입력하세요"></textarea>
+      <br /><br />
+
+      <div class="form-actions">
+        <button onclick="addPost()">작품 등록</button>
+        <button class="cancel-btn" type="button" onclick="cancelTo('posts.html')">작성 취소</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="simple-footer">
+  Copyright © 2026 Philip™ Literature
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
