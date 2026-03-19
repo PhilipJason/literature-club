@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>마이페이지</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>문예부</h1>
+    <nav>
+      <a href="index.html">홈</a>
+      <a href="posts.html">작품</a>
+      <a href="notices.html">공지</a>
+      <a href="mypage.html" class="mypage-link">
+        <div class="profile-circle">M</div>
+      </a>
+      <a href="login.html" id="login-link">로그인</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="mypage-guest" style="display:none;">
+      <div class="badge">마이페이지</div>
+      <h2>로그인 후 이용 가능합니다</h2>
+      <p>문예부 계정으로 로그인한 뒤 마이페이지를 이용해 주세요.</p>
+      <a href="login.html"><button>로그인하러 가기</button></a>
+    </section>
+
+    <section id="mypage-user" style="display:none;">
+      <div class="badge">마이페이지</div>
+      <h2>내 정보</h2>
+      <div id="my-profile"></div>
+    </section>
+  </main>
+
+  <footer class="apple-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span>Copyright © 2026 Philip™ Literature</span>
+      </div>
+      <div class="footer-right">대한민국</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+</body>
+</html>
