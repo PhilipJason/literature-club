@@ -85,6 +85,20 @@ function isEdited(createdAt, updatedAt) {
   return !!updatedAt;
 }
 
+function iconSvg(name, label = "") {
+  const icons = {
+    heart: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6c-1.9-1.8-4.9-1.7-6.7.2L12 7l-2.1-2.2C8.1 2.9 5.1 2.8 3.2 4.6c-2 1.9-2.1 5.1-.2 7.1l9 9.3 9-9.3c1.9-2 1.8-5.2-.2-7.1Z"/></svg>`,
+    eye: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.4 12s3.4-6.5 9.6-6.5 9.6 6.5 9.6 6.5-3.4 6.5-9.6 6.5S2.4 12 2.4 12Z"/><circle cx="12" cy="12" r="2.8"/></svg>`,
+    comment: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 18.1A8.4 8.4 0 1 1 12 21.5H4.7l.5-3.4Z"/></svg>`
+  };
+
+  return `<span class="stat-icon stat-icon-${name}" aria-label="${escapeHtml(label)}">${icons[name] || ""}</span>`;
+}
+
+function statPill(name, value, label) {
+  return `<span class="stat-pill">${iconSvg(name, label)}<span>${escapeHtml(value)}</span></span>`;
+}
+
 /* ---------------- 권한 / 계정 ---------------- */
 
 function getUsers() {
@@ -724,9 +738,9 @@ async function renderHomeHighlights() {
       String(topLikedPost.content).length > 120 ? "..." : ""
     }</p>
         <div class="post-meta">
-          <span>❤️ ${topLikedPost.likes}</span>
-          <span>👁 ${topViewedPost ? "" : ""}${topLikedPost.views}</span>
-          <span>💬 ${topLikedPost.comments.length}</span>
+          ${statPill("heart", topLikedPost.likes, "좋아요")}
+          ${statPill("eye", topLikedPost.views, "조회수")}
+          ${statPill("comment", topLikedPost.comments.length, "댓글")}
         </div>
         <a href="post-detail.html?id=${topLikedPost.id}">작품 보기</a>
       </div>
@@ -753,9 +767,9 @@ async function renderHomeHighlights() {
       String(topViewedPost.content).length > 120 ? "..." : ""
     }</p>
         <div class="post-meta">
-          <span>❤️ ${topViewedPost.likes}</span>
-          <span>👁 ${topViewedPost.views}</span>
-          <span>💬 ${topViewedPost.comments.length}</span>
+          ${statPill("heart", topViewedPost.likes, "좋아요")}
+          ${statPill("eye", topViewedPost.views, "조회수")}
+          ${statPill("comment", topViewedPost.comments.length, "댓글")}
         </div>
         <a href="post-detail.html?id=${topViewedPost.id}">작품 보기</a>
       </div>
@@ -1015,7 +1029,7 @@ function renderComments(post, postId) {
             onclick="toggleCommentLike(${postId}, ${i})"
             aria-label="댓글 좋아요"
           >
-            <span class="like-icon">${liked ? "❤️" : "🤍"}</span>
+            ${iconSvg("heart", "좋아요")}
             <span class="like-count">${Number(c.likes || 0)}</span>
           </button>
         </div>
@@ -1093,11 +1107,13 @@ async function renderPosts() {
             String(p.content).length > 120 ? "..." : ""
           }</p>
           <div class="post-meta">
-            <span>❤️ ${Number(p.likes || 0)}</span>
-            <span>👁 ${Number(p.views || 0)}</span>
-            <span>💬 ${
-              Array.isArray(p.comments) ? p.comments.length : 0
-            }</span>
+            ${statPill("heart", Number(p.likes || 0), "좋아요")}
+            ${statPill("eye", Number(p.views || 0), "조회수")}
+            ${statPill(
+              "comment",
+              Array.isArray(p.comments) ? p.comments.length : 0,
+              "댓글"
+            )}
           </div>
           <a href="post-detail.html?id=${p.id}">읽어보기</a>
         </div>
@@ -1188,11 +1204,13 @@ async function renderPostDetail() {
     )}</div>
 
     <div class="detail-stats">
-      <span>❤️ 좋아요 ${Number(post.likes || 0)}</span>
-      <span>👁 조회수 ${Number(post.views || 0)}</span>
-      <span>💬 댓글 ${
-        Array.isArray(post.comments) ? post.comments.length : 0
-      }</span>
+      ${statPill("heart", `좋아요 ${Number(post.likes || 0)}`, "좋아요")}
+      ${statPill("eye", `조회수 ${Number(post.views || 0)}`, "조회수")}
+      ${statPill(
+        "comment",
+        `댓글 ${Array.isArray(post.comments) ? post.comments.length : 0}`,
+        "댓글"
+      )}
     </div>
 
     <div class="detail-actions">
@@ -1202,7 +1220,7 @@ async function renderPostDetail() {
         onclick="togglePostLike(${id})"
         aria-label="작품 좋아요"
       >
-        <span class="like-icon">${liked ? "❤️" : "🤍"}</span>
+        ${iconSvg("heart", "좋아요")}
         <span class="like-count">${Number(post.likes || 0)}</span>
       </button>
 
